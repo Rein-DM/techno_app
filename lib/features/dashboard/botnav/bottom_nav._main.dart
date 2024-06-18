@@ -1,5 +1,5 @@
+// bottom_navigation.dart
 import 'package:flutter/material.dart';
-
 import '../../../constants/assets.dart';
 
 class BottomNavigation extends StatefulWidget {

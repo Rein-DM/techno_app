@@ -1,153 +1,150 @@
 import 'package:flutter/material.dart';
 
-import '../authentication/login/login_main.dart';
+import '../constants/assets.dart';
+import '../features/dashboard/main_screen.dart';
+import 'onboarding_model.dart';
 import 'unboardlist.dart';
 
-class Onboardings extends StatefulWidget {
-  const Onboardings({super.key, required String title});
+class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({super.key});
 
   @override
-  State<Onboardings> createState() => _OnboardingsState();
+  State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
 
-class _OnboardingsState extends State<Onboardings> {
-  int currentIndex = 0;
-  late PageController _controller;
-  @override
-  void initState() {
-    _controller = PageController(initialPage: 0);
-    super.initState();
+class _OnboardingScreenState extends State<OnboardingScreen> {
+  PageController pageController = PageController();
+  int pageIndex = 0;
+
+  List<OnboardingModel> onboardingList = const [
+    OnboardingModel(
+      image: Assets.onboarding1,
+      description: Strings.onboardingDescription1,
+    ),
+    OnboardingModel(
+      image: Assets.onboarding2,
+      description: Strings.onboardingDescription2,
+    ),
+    OnboardingModel(
+      image: Assets.onboarding3,
+      description: Strings.onboardingDescription3,
+    ),
+  ];
+
+  void onPageChanged(int index) {
+    setState(() {
+      pageIndex = index;
+    });
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
+  void nextPage() {
+    if (pageIndex == onboardingList.length - 1) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const MainScreen(
+                  title: '',
+                )),
+      );
+    } else {
+      pageController.nextPage(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeIn,
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(''),
-      ),
+      backgroundColor: const Color(0xFFFF9A24),
       body: Column(
         children: [
           Expanded(
             child: PageView.builder(
-              controller: _controller,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: contents.length,
-              onPageChanged: (int index) {
-                setState(() {
-                  currentIndex = index;
-                });
-              },
-              itemBuilder: (_, i) {
+              controller: pageController,
+              onPageChanged: onPageChanged,
+              itemCount: onboardingList.length,
+              itemBuilder: (context, index) {
+                var data = onboardingList[index];
                 return Padding(
-                  padding: const EdgeInsets.all(40),
+                  padding: const EdgeInsets.only(top: 44, bottom: 44),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
-                        contents[i].title,
-                        style: const TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black),
+                      Center(
+                        child: Image.asset(
+                          data.image,
+                          height: 300,
+                          width: 300,
+                        ),
                       ),
-                      Image.asset(
-                        contents[i].assets,
-                        height: 300,
+                      const SizedBox(height: 40),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(onboardingList.length, (index) {
+                          return Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 4),
+                            width: 27,
+                            height: 5,
+                            decoration: BoxDecoration(
+                              color: pageIndex == index
+                                  ? Colors.white
+                                  : Colors.black,
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          );
+                        }),
                       ),
-                      const SizedBox(height: 5),
+                      const SizedBox(height: 40),
                       Text(
-                        contents[i].description,
+                        data.description,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
-                          fontSize: 12,
                           color: Colors.black,
+                          fontSize: 21,
+                          fontWeight: FontWeight.w700,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 );
               },
             ),
           ),
-          Container(
-            height: 60,
-            margin: const EdgeInsets.all(40),
-            width: MediaQuery.of(context).size.width * .9,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.black,
-              ),
-              child: Text(
-                currentIndex == contents.length - 1 ? "Get Started" : "Next",
-                style: const TextStyle(color: Colors.white),
-              ),
-              onPressed: () {
-                if (currentIndex == contents.length - 1) {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const LoginMain(
-                          title: '',
-                        ),
-                      ));
-                }
-                _controller.nextPage(
-                  duration: const Duration(milliseconds: 100),
-                  curve: Curves.bounceIn,
-                );
-              },
-            ),
-          ),
-          Column(
-            children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => const LoginMain(title: '')));
-                },
-                child: const Text(
-                  'Skip',
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Container(
+              margin: const EdgeInsets.all(24),
+              child: TextButton(
+                onPressed: nextPage,
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    side: const BorderSide(color: Colors.white, width: 1),
+                  ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                ),
+                child: Text(
+                  pageIndex == 0
+                      ? Strings.next
+                      : pageIndex == 1
+                          ? Strings.next
+                          : Strings.getStarted,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
               ),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(
-              contents.length,
-              (index) => buildDot(index, context),
             ),
           ),
-          const SizedBox(
-            height: 10,
-          ),
+          const SizedBox(height: 20),
         ],
-      ),
-    );
-  }
-
-  Container buildDot(int index, BuildContext context) {
-    Color dotColor =
-        currentIndex == index ? Colors.black : const Color(0xFFF8F8F8);
-    return Container(
-      height: 10,
-      width: currentIndex == index ? 40 : 10,
-      margin: const EdgeInsets.only(right: 7),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.black),
-        borderRadius: BorderRadius.circular(30),
-        color: dotColor,
       ),
     );
   }

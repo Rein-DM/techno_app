@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../../../constants/assets.dart';
-import '../botnav/bottom_nav._main.dart';
 import 'components/home_category.dart';
 import 'components/home_popular.dart';
 
@@ -142,8 +139,6 @@ class _HomeMainState extends State<HomeMain> {
                 ),
               ],
             ),
-
-            //put here all the other in home
             const HomeCategory(),
             const SizedBox(
               height: 15,
@@ -151,10 +146,6 @@ class _HomeMainState extends State<HomeMain> {
             const HomePopular(),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigation(
-        currentIndex: _currentIndex,
-        onTap: _onItemTapped,
       ),
     );
   }

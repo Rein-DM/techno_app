@@ -1,54 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'dart:async';
 
-import '../constants/assets.dart';
+import '../../constants/assets.dart';
 import '../onboarding/onboarding.dart';
 
-class SplashPage extends StatefulWidget {
-  const SplashPage({super.key, required String title});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key, required String title});
 
   @override
-  State<SplashPage> createState() => _SplashPageState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashPageState extends State<SplashPage> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-    Future.delayed(const Duration(seconds: 5), () {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (_) => const Onboardings(
-                title: '',
-              )));
+    Timer(const Duration(seconds: 3), () {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => const OnboardingScreen()),
+      );
     });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: SystemUiOverlay.values);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Spacer(),
-          Center(
-              child: Image.asset(
-            Assets.logoFood,
-            height: 112,
-          )),
-          const Spacer(),
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 35),
-            child: const CircularProgressIndicator(),
-          ),
-        ],
+      backgroundColor: const Color(0xFFFF9A24),
+      body: Center(
+        child: Image.asset(Assets.techlogo),
       ),
     );
   }

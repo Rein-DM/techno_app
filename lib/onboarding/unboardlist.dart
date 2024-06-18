@@ -1,26 +1,10 @@
-class UnbordingContent {
-  String assets;
-  String title;
-  String description;
-
-  UnbordingContent(
-      {required this.assets, required this.title, required this.description});
+class Strings {
+  static const String onboardingDescription1 =
+      'Are you ready to Explore a\n every special cuisine.';
+  static const String onboardingDescription2 =
+      'Anything and Everywhere\n you are, You can order your\n favorite food.';
+  static const String onboardingDescription3 =
+      'So what have you waiting\n for order now to make your\n day satisfy now!';
+  static const String next = 'Next';
+  static const String getStarted = 'Get Started';
 }
-
-List<UnbordingContent> contents = [
-  UnbordingContent(
-      title: 'Lorem Impsum',
-      assets: 'assets/onboarding.png',
-      description:
-          "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"),
-  UnbordingContent(
-      title: 'Lorem Impsum',
-      assets: 'assets/onboarding.png',
-      description:
-          "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"),
-  UnbordingContent(
-      title: 'Lorem Impsum',
-      assets: 'assets/onboarding.png',
-      description:
-          "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"),
-];

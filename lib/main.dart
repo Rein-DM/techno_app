@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'food/food_main.dart';
+import 'splash/splash.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF93C5FF)),
         useMaterial3: true,
       ),
-      home: const FoodMain(title: 'Flutter Demo Home Page'),
+      home: const SplashScreen(title: 'Flutter Demo Home Page'),
     );
   }
 }

@@ -24,5 +24,12 @@ class Assets {
   static const dislike = "assets/images/dislike.png";
   static const pfp = "assets/images/op.png";
   static const elipse = "assets/images/elipse.png";
+  static const onboarding1 = "assets/images/onboarding_1.png";
+  static const onboarding2 = "assets/images/onboarding_2.png";
+  static const onboarding3 = "assets/images/onboarding_logo.png";
+  static const icMenuLabel = "assets/images/ic_menu_label.png";
+  static const techfood7 = "assets/images/tech_food7.png";
+  static const techfood8 = "assets/images/tech_food8.png";
+
   Assets(String techfood5);
 }
