@@ -106,9 +106,13 @@ class OrderCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 4),
-                const Text(
-                  '14414 BLB 2, Dau Malabacat City,\nPampanga',
-                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w400),
+                Container(
+                  width: 200,
+                  child: const Text(
+                    '14414 BLB 2, Dau Malabacat City,Pampanga',
+                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w400),
+                    maxLines: 2,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 Row(
