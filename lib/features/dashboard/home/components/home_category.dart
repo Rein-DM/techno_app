@@ -11,7 +11,7 @@ class HomeCategory extends StatelessWidget {
     return Column(
       children: [
         Container(
-          margin: const EdgeInsets.only(right: 250, bottom: 6, top: 10),
+          margin: const EdgeInsets.only(right: 200, bottom: 6, top: 10),
           child: const Text(
             'Food Category',
             style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),

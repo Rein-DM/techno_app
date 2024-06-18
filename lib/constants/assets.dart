@@ -30,6 +30,8 @@ class Assets {
   static const icMenuLabel = "assets/images/ic_menu_label.png";
   static const techfood7 = "assets/images/tech_food7.png";
   static const techfood8 = "assets/images/tech_food8.png";
-
+  static const icMap = "assets/images/map.png";
+  static const icLandmark = "assets/images/landmark.png";
+  static const icNearPin = "assets/images/Near Pin Marker.png";
   Assets(String techfood5);
 }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:techno_app/constants/assets.dart';
 
+import '../features/transactions/transactions_main.dart';
 import 'details/food_details.dart';
 
 class FoodMain extends StatefulWidget {
@@ -506,7 +507,19 @@ class _FoodMainState extends State<FoodMain> {
                                                                         60),
                                                           ),
                                                           child: TextButton(
-                                                            onPressed: () {},
+                                                            onPressed: () {
+                                                              Navigator.push(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          const DetailTransactionScreen(
+                                                                    title:
+                                                                        'Detail Transaction',
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            },
                                                             child: const Text(
                                                               'Proceed Transaction',
                                                               style: TextStyle(

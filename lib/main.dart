@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'features/transactions/components/transaciton_map.dart';
+import 'features/transactions/transactions_main.dart';
 import 'food/food_main.dart';
 import 'splash/splash.dart';
 

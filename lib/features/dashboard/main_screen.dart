@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:techno_app/features/dashboard/accounts/accounts_main.dart';
 import 'package:techno_app/features/dashboard/home/home_main.dart';
 import 'package:techno_app/features/dashboard/menu/menu_screen.dart';
 
 import 'botnav/bottom_nav._main.dart';
+import 'orders/orders_main.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key, required String title});
@@ -36,6 +38,8 @@ class _MainScreenState extends State<MainScreen> {
             title: '',
           ),
           MenuScreen(),
+          PlaceOrderScreen(),
+          AccountMain(),
         ],
       ),
       bottomNavigationBar: BottomNavigation(
